@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="memberDao" class="kr.or.ddit.member.dao.MemberDao"/>
+	
+	<!--
+		bean을 주입하는 방법
+		1.setter
+		2.constructor
+	-->
+	<bean id="memberService" class="kr.or.ddit.member.service.MemberService">
+		<!-- property : 자바객체의 속성(private MemberDaoInf memberDao;) -->
+		<!-- setter method를 이용한 bean 주입 -->
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="memberServiceSec" class="kr.or.ddit.member.service.MemberService">
+		<!-- constructor(생성자)를 이용한 bean 주입 -->
+		<constructor-arg ref="memberDao"/>
+	</bean>
+	
+	
+	<bean id="memberDaoProto" class="kr.or.ddit.member.dao.MemberDao" scope="prototype"/>
+	<bean id="memberDaoSingle" class="kr.or.ddit.member.dao.MemberDao" scope="singleton"/>
+	
+	<!--
+		memberServiceSingle : scope가 singleton
+		memberDaoProto : scope가 prototype
+	 -->
+	<bean id="memberServiceSingle" class="kr.or.ddit.member.service.MemberService" scope="singleton">
+		<property name="memberDao" ref="memberDaoProto"/>
+	</bean>
+	<bean id="memberServiceSingle2" class="kr.or.ddit.member.service.MemberService" scope="singleton">
+		<property name="memberDao" ref="memberDaoProto"/>
+	</bean>
+	
+</beans>
