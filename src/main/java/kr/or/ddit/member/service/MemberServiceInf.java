@@ -2,6 +2,7 @@ package kr.or.ddit.member.service;
 
 import java.util.List;
 
+import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
 
 /**
@@ -31,4 +32,6 @@ public interface MemberServiceInf {
 	 * Method 설명 : 회원 리스트 조회
 	 */
 	List<MemberVO> getMemberList();
+	
+	MemberDaoInf getMemberDao();
 }

@@ -10,6 +10,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.stereotype.Repository;
 
 /**
  * BoardDao.java
@@ -28,6 +29,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  *
  * </pre>
  */
+
+/*
+ * @Controller : controller
+ * @Service : service
+ * @Repository : dao
+ */
+@Repository("memberDao")
 public class MemberDao implements MemberDaoInf{
 	private SqlSessionFactory sqlSessionFactory;
 	private SqlSession sqlSession;
