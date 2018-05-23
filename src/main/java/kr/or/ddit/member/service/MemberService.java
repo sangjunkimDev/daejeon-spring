@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.member.dao.MemberDaoInf;
@@ -29,6 +31,7 @@ import kr.or.ddit.member.model.MemberVO;
 
 @Service("memberService")
 public class MemberService implements MemberServiceInf{
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Resource(name="memberDao")
 	private MemberDaoInf memberDao;
@@ -46,6 +49,7 @@ public class MemberService implements MemberServiceInf{
 		this.memberDao = memberDao;
 	}
 	public MemberService(){
+		logger.debug("{}", "public MemberService() : 생성자");
 	}
 	
 	
