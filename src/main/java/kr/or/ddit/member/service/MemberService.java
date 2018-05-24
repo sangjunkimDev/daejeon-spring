@@ -64,4 +64,8 @@ public class MemberService implements MemberServiceInf{
 	public List<MemberVO> getMemberList() {
 		return memberDao.getMemberList();
 	}
+	@Override
+	public MemberVO getMember(MemberVO memberVO) {
+		return memberDao.getMember(memberVO);
+	}
 }

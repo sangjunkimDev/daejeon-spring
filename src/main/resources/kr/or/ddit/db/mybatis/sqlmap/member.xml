@@ -10,7 +10,12 @@
 		FROM WEBMEMBER
 	</select>
 	
-	
+	<!-- 회원 정보 조회 -->
+	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
+		SELECT *
+		FROM WEBMEMBER
+		WHERE MEM_ID = #{mem_id} AND MEM_PASS = #{mem_pass}
+	</select>
 	
 	
 </mapper>

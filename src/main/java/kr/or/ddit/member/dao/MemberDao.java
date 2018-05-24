@@ -14,24 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-/**
- * BoardDao.java
- *
- * @author "K.S.J"
- * @since 2018. 5. 18.
- * @version 1.0
- * @see
- *
- * <pre>
- * << 개정이력(Modification Information) >>
- *
- * 수정일 수정자 수정내용
- * ---------- ------ ------------------------
- * 2018. 5. 18. "K.S.J" 최초 생성
- *
- * </pre>
- */
-
 /*
  * @Controller : controller
  * @Service : service
@@ -65,5 +47,15 @@ public class MemberDao implements MemberDaoInf{
 		sqlSession.close();
 		
 		return memberList;
+	}
+
+	@Override
+	public MemberVO getMember(MemberVO memberVO) {
+		sqlSession = sqlSessionFactory.openSession();
+		MemberVO result = sqlSession.selectOne("member.getMember", memberVO);
+		
+		sqlSession.close();
+		
+		return result;
 	}
 }

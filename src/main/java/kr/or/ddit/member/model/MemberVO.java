@@ -93,4 +93,24 @@ public class MemberVO {
 	public void setMem_profile(String mem_profile) {
 		this.mem_profile = mem_profile;
 	}
+
+	/**
+	 * Method : passwordVerify
+	 * 최초작성일 : 2018. 5. 24.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param memberVO
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 검증
+	 */
+	public boolean passwordVerify(MemberVO memberVO) {
+		if (memberVO == null) {
+			return false;
+		}
+		
+		if (this.mem_pass.equals(memberVO.getMem_pass()) && this.mem_id.equals(memberVO.getMem_id())) {
+			return true;
+		}
+		return false;
+	}
 }

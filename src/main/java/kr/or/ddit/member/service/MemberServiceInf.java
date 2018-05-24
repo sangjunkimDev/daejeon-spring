@@ -31,7 +31,19 @@ public interface MemberServiceInf {
 	 * @return
 	 * Method 설명 : 회원 리스트 조회
 	 */
-	List<MemberVO> getMemberList();
+	public List<MemberVO> getMemberList();
 	
-	MemberDaoInf getMemberDao();
+	public MemberDaoInf getMemberDao();
+
+	/**
+	 * Method : getMember
+	 * 최초작성일 : 2018. 5. 24.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param memberVO (id를 가진 멤버vo)
+	 * @return
+	 * Method 설명 : 해당 멤버의 정보를 조회
+	 */
+	public MemberVO getMember(MemberVO memberVO);
+	
 }
