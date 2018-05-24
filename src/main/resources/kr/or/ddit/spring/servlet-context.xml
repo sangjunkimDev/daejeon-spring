@@ -14,7 +14,7 @@
 	
 	<!-- annotation 기반 spring mvc 설정 모음 -->
 	<mvc:annotation-driven/>
-	<!-- <mvc:default-servlet-handler/> -->
+	<mvc:default-servlet-handler/>
 	
 	<!-- handler mapping -->
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->

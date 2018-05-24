@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -21,7 +22,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:kr/or/ddit/spring/servlet-context.xml", 
@@ -87,19 +90,23 @@ public class MemberControllerTest {
 	 * 작성자 : "K.S.J"
 	 * 변경이력 :
 	 * Method 설명 : memberList 테스트
+	 * @throws Exception 
 	 */
 	@Test
-	public void memberListTest(){
+	public void memberListTest() throws Exception{
 		/***Given***/
-		MvcResult result = mockMvc.perform(get(urlTemplate, urlVariables));
+		//localhost:8070/spring/member/list를 get방식으로 요청
+		MvcResult result = mockMvc.perform(get("/member/list")).andReturn();
 
 		/***When***/
-
-		/***Then***/
-
+		ModelAndView mav = result.getModelAndView();
+		Map<String, Object> model = mav.getModel();
+		List<MemberVO> list = (List<MemberVO>) model.get("memberList");
 		
+		/***Then***/
+		assertEquals("member/memberList", mav.getViewName());
+		assertEquals(25, list.size());
 		
 	}
-	
-	
+
 }
