@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello index
-<img src="${pageContext.request.contextPath}/requestPart/pictureDownload?pictureName=Koala.jpg">
-<a href="${pageContext.request.contextPath}/requestPart/pictureDownload?pictureName=Koala.jpg">download Koala</a>
+	<h1>requestPart</h1>
+	
+	<form action="${pageContext.request.contextPath}/requestPart/upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="file"><br>
+		<input type="submit" value="전송"><br>
+	</form>
+	
+	
 </body>
 </html>
