@@ -1,5 +1,8 @@
 package kr.or.ddit.spring.mvc.validator;
 
+import javax.validation.Valid;
+
+import kr.or.ddit.member.model.Jsr303MemberVO;
 import kr.or.ddit.member.model.MemberVO;
 
 import org.springframework.stereotype.Controller;
@@ -60,8 +63,24 @@ public class ValidatorController {
 	public String validator(MemberVO memberVO, BindingResult result){
 		new MemberVOValidator().validate(memberVO, result);
 		
+		if(result.hasErrors())
+			return "mvc/validator/view";
+		else
+			return "mvc/validator/result";
 		
-		return "";
+	}
+	
+	
+	//********BindingResult 객체는 검증하고자 하는********
+	//********form(vo) 객체 바로 뒤에 위치해야 한다********
+	@RequestMapping("/jsr303validator")
+	public String validator(@Valid Jsr303MemberVO jsr303memberVO, BindingResult result){
+		
+		if(result.hasErrors())
+			return "mvc/validator/view";
+		else
+			return "mvc/validator/result";
+		
 	}
 	
 	

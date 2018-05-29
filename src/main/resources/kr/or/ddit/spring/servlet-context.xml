@@ -10,6 +10,9 @@
 	<context:annotation-config/>
 	<context:component-scan base-package="kr.or.ddit" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		
+		<!-- 예외처리 -->
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
 	<!-- annotation 기반 spring mvc 설정 모음 -->
@@ -24,9 +27,34 @@
 	
 	<!-- view resolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2"/>
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="order" value="1"/>
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+	</bean>
+	
+	<bean id="tilesConfigure" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-definition.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- json view -->
+	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+	
+
+	
 	
 	<!-- multipart resolver -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -34,5 +62,29 @@
 		<property name="maxInMemorySize" value="10000000"/>
 	</bean>
 	
-
+	<!-- message source -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:kr/or/ddit/msg/error</value>
+				<value>classpath:kr/or/ddit/msg/message</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"></bean>
+	
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="language"></property>
+			</bean>
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+	
 </beans>

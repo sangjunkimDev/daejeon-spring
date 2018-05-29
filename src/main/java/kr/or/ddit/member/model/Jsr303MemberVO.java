@@ -2,11 +2,13 @@ package kr.or.ddit.member.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
- * MemberVO.java
+ * Jsr303MemberVO.java
  *
  * @author "K.S.J"
- * @since 2018. 5. 18.
+ * @since 2018. 5. 28.
  * @version 1.0
  * @see
  *
@@ -15,13 +17,17 @@ import java.util.Date;
  *
  * 수정일 수정자 수정내용
  * ---------- ------ ------------------------
- * 2018. 5. 18. "K.S.J" 최초 생성
+ * 2018. 5. 28. "K.S.J" 최초 생성
  *
  * </pre>
  */
-public class MemberVO {
+public class Jsr303MemberVO {
+	
+	@NotEmpty
 	private String mem_id;
+	@NotEmpty
 	private String mem_pass;
+	
 	private String mem_name;
 	private String mem_add1;
 	private String mem_add2;
@@ -103,7 +109,7 @@ public class MemberVO {
 	 * @return
 	 * Method 설명 : 사용자 비밀번호 검증
 	 */
-	public boolean passwordVerify(MemberVO memberVO) {
+	public boolean passwordVerify(Jsr303MemberVO memberVO) {
 		if (memberVO == null) {
 			return false;
 		}
@@ -113,20 +119,4 @@ public class MemberVO {
 		}
 		return false;
 	}
-	
-	public MemberVO(){super();}
-
-	public MemberVO(String mem_id, String mem_pass, String mem_name,
-			String mem_add1, String mem_add2, String mem_zip,
-			String mem_alias) {
-		super();
-		this.mem_id = mem_id;
-		this.mem_pass = mem_pass;
-		this.mem_name = mem_name;
-		this.mem_add1 = mem_add1;
-		this.mem_add2 = mem_add2;
-		this.mem_zip = mem_zip;
-		this.mem_alias = mem_alias;
-	}
-	
 }

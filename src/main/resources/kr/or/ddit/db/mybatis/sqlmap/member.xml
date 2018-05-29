@@ -17,5 +17,9 @@
 		WHERE MEM_ID = #{mem_id} AND MEM_PASS = #{mem_pass}
 	</select>
 	
-	
+	<!-- 회원 등록 -->
+	<insert id="insertMember" parameterType="MemberVO">
+		INSERT INTO WEBMEMBER (MEM_ID,MEM_PASS,MEM_NAME,MEM_BIR,MEM_ADD1,MEM_ADD2,MEM_ZIP,MEM_ALIAS)
+		VALUES (#{mem_id},#{mem_pass},#{mem_name},SYSDATE,#{mem_add1},#{mem_add2},#{mem_zip},#{mem_alias})
+	</insert>
 </mapper>
